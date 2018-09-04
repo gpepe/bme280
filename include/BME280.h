@@ -18,6 +18,10 @@ public:
     mgos_bme280_delete(_bme);
   }
 
+  void takeForcedMeasurement() {
+    mgos_bme280_take_forced_measurement(_bme);
+  }
+
   /*
    * Reads the temperature, pressure and humidity in the provided `data` structure.
    * If the device is BMP280, the humidity will be 0.

@@ -128,6 +128,8 @@ double mgos_bme280_data_get_humid(const struct mgos_bme280_data* data);
  */
 bool mgos_bme280_getStats(struct mgos_bme280 *bme, struct mgos_bme280_stats *stats);
 
+void mgos_bme280_take_forced_measurement(struct mgos_bme280 *bme);
+
 #ifdef __cplusplus
 }
 #endif

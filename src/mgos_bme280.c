@@ -184,7 +184,6 @@ static int8_t commonInit(struct mgos_bme280* bme)
         return rslt;
     }
 
-    /* Recommended mode of operation: Indoor navigation */
     bme->dev.settings.osr_h = BME280_OVERSAMPLING_1X;
     bme->dev.settings.osr_p = BME280_OVERSAMPLING_1X;
     bme->dev.settings.osr_t = BME280_OVERSAMPLING_1X;
@@ -211,6 +210,15 @@ static int8_t commonInit(struct mgos_bme280* bme)
     }
     return BME280_OK;
 }
+
+void mgos_bme280_take_forced_measurement(struct mgos_bme280 *bme)
+{
+//   settings_sel = BME280_OSR_PRESS_SEL|BME280_OSR_TEMP_SEL|BME280_OSR_HUM_SEL;
+//   rslt = bme280_set_sensor_settings(settings_sel, dev);
+   bme280_set_sensor_mode(BME280_FORCED_MODE, &bme->dev);
+   mgos_msleep(5);
+}
+
 
 struct mgos_bme280* mgos_bme280_i2c_create(uint8_t addr)
 {
@@ -273,6 +281,8 @@ struct mgos_bme280* mgos_bme280_spi_create()
 
     return bme;
 }
+
+
 
 static int8_t mgos_bme280_get_sensor_data(uint8_t sensor_comp, struct bme280_data *comp_data, struct mgos_bme280 *bme)
 {
